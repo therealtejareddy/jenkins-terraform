@@ -1,4 +1,9 @@
 terraform {
+    backend "s3" {
+    bucket         = "teja-tfstate-backend"
+    key            = "environments/training/terraform.tfstate"
+    dynamodb_table = "teja-tf-state-locking"
+  }
   required_providers {
     aws = {
       source  = "hashicorp/aws"
