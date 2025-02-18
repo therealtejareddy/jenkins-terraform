@@ -3,6 +3,7 @@ terraform {
     bucket         = "teja-tfstate-backend"
     key            = "environments/prod/terraform.tfstate"
     dynamodb_table = "teja-tf-state-locking"
+    region = "us-east-1"
   }
   required_providers {
     aws = {
