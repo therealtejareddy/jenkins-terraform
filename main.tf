@@ -11,7 +11,7 @@ terraform {
 provider "aws" {
   default_tags {
     tags = {
-      Environment = "training"
+      Environment = "Production"
     }
   }
 }
