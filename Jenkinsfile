@@ -21,7 +21,7 @@ pipeline{
         }
         stage("Approval"){
             when {
-                branch 'main', 'dev', 'prod'
+                branch 'main' || branch 'dev' || branch 'prod'
             }
             steps{
                 input message: 'Approve deployment?', ok: 'Deploy'
@@ -29,7 +29,7 @@ pipeline{
         }
         stage('Terraform Apply') {
             when {
-                branch 'main', 'dev', 'prod'
+                branch 'main' || branch 'dev' || branch 'prod'
             }
             steps {
                 script {
