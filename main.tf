@@ -1,7 +1,7 @@
 terraform {
     backend "s3" {
     bucket         = "teja-tfstate-backend"
-    key            = "environments/training/terraform.tfstate"
+    key            = "environments/prod/terraform.tfstate"
     dynamodb_table = "teja-tf-state-locking"
   }
   required_providers {
@@ -22,7 +22,7 @@ provider "aws" {
 }
 
 resource "aws_s3_bucket" "my_bucket" {
-  bucket = "teja-tf-bucket"
+  bucket = "teja-tf-bucket-prod"
   tags = {
     CreadtedBy = "Teja"
   }
