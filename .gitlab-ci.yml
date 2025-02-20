@@ -1,0 +1,35 @@
+stages:
+  - validate
+  - plan
+  - apply
+
+variables:
+  TF_VERSION: "1.10"
+  TF_IMAGE: "hashicorp/terraform:${TF_VERSION}"
+
+validate:
+  stage: validate
+  image: $TF_IMAGE
+  script:
+    - terraform init
+    - terraform validate
+
+plan:
+  stage: plan
+  image: $TF_IMAGE
+  script:
+    - terraform init
+    - terraform plan -out=tfplan
+  artifacts:
+    paths:
+      - tfplan
+
+apply:
+  stage: apply
+  image: $TF_IMAGE
+  when: manual
+  only:
+    - main
+  script:
+    - terraform init
+    - terraform apply -auto-approve tfplan
